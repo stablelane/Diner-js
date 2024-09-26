@@ -9,6 +9,12 @@ document.addEventListener('click', function(e){
     else if(e.target.dataset.remove){
         handleRemoveBtn(e.target.dataset.remove)
     }
+    else if(e.target.id === 'complete-order-btn'){
+        handleCompleteBtn()
+    }
+    else if(e.target.id === 'pay-btn'){
+        handlePayBtn()
+    }
 
 })
 
@@ -20,11 +26,11 @@ function handleAddBtn(id){
         
        
     document.getElementById('items').innerHTML += 
-                                        `<div class="items" id="${item}">
-                                            <h4>${targetItem.name}</h4>
-                                            <button class="remove" data-remove=${item}>remove</button>
-                                            <h5>$${targetItem.price}</h5>
-                                        </div>`
+                            `<div class="items" id="${item}">
+                                <h4>${targetItem.name}</h4>
+                                <button class="remove" data-remove=${item}>remove</button>
+                                <h5 class="price">$${targetItem.price}</h5>
+                            </div>`
     totalPrice(targetItem.price)   
     item++      
     document.getElementById('order-card').classList.remove('hidden')                               
@@ -32,8 +38,11 @@ function handleAddBtn(id){
 
 let total = 0
 function handleRemoveBtn(id){
-    console.log(id)
-    document.getElementById(id).remove()
+    
+    let div = document.getElementById(id)
+    div.remove()
+    let price = div.querySelector('.price').textContent  
+    totalPrice(-Number(price.replace('$','')))
     handleOrderdiv()
 }
 
@@ -44,10 +53,39 @@ function totalPrice(price){
 
 function handleOrderdiv(){
     if(document.getElementsByClassName('items').length === 0){
-        console.log('meh')
+        
+        
         document.getElementById('order-card').classList.add('hidden')
     }
 
+}
+function handleCompleteBtn(){
+    document.getElementById('modal').style.display = 'inline'
+}
+function handlePayBtn(){
+    const name = document.querySelector('input')
+    const cardNumber = document.querySelector('input[name="cardNumber"]')
+    const cvv = document.querySelector('input[name="cvv"]')
+    if (input.value.trim() === '' && cardNumber.value.trim() === '' 
+                    && cvv.value.trim() === '') {
+        input.setCustomValidity('Please fill out this field'); // Set custom error message
+        input.reportValidity(); // Show the validation message
+    } else {
+        input.setCustomValidity('');
+       
+        confirmId = 1
+    }
+}
+let confirmId = 0
+handleOrderConfirmDiv(confirmId)
+function handleOrderConfirmDiv(confirmId){
+    if(confirmId === 1){
+        document.getElementById('order-confirmation').style.display = 'block'
+
+    }
+    else{
+        document.getElementById('order-confirmation').style.display = 'none'
+    }
 }
 const itemsHtml = menuArray.map(item => {
     return `<div class="card">

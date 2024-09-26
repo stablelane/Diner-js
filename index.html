@@ -13,37 +13,29 @@
             </div>
         </header>
         <content id="cards">
-            <!-- <div class="card">
-                
-                <h2 class="logo">🍕</h2>
-                <div class="card-text">
-                    <h2>Pizza</h2>
-                    <h3>pepporoni,mushroom,mozarella</h3>
-                    <h4>$14</h4>
-                </div>
-                <button>+</button>
-            </div>
-            -->
         </content>
         <div class="order-card" id="order-card">
             <h4 class="title">Your order</h4>
             <div id="items">
-                <!-- <div class="items">
-                    <h4>Pizza</h4>
-                    <button class="remove">remove</button>
-                    <h5>$14</h5>
-                </div>
-                <div class="items">
-                    <h4>Pizza</h4>
-                    <button class="remove">remove</button>
-                    <h5>$14</h5>
-                </div> -->
             </div>
             <div class="total-price">
                 <h4>Total price:</h4>
                 <h5 id="total-price">$0</h5>
             </div>
-            <button class="complete-order">Complete order</button>
+            <button class="complete-order" id="complete-order-btn">Complete order</button>
+        </div>
+        <div class="order-confirmation" id="order-confirmation">
+            <h5>Thanks, James! Your order is on its way!</h5>
+        </div>
+        <div class="modal" id="modal">
+            <h5>Enter card details</h5>
+            <form class="consent-form" id="consent-form">
+                <input type="text" name="fullName" placeholder="Enter your name" required/>
+                <input type="number" name="cardNumber" placeholder="Enter card number" required/>
+                <input type="number" name="cvv" placeholder="Enter CVV" required/>   
+                <button type="submit" class="modal-btn"id="pay-btn">Pay</button>
+
+            </form>
         </div>
 	<script src="index.js" type="module"></script>
     </body>
